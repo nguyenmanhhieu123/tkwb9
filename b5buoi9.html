@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Slideshow Ảnh</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  text-align: center;
+  margin-top: 60px;
+}
+
+.slideshow-container {
+  position: relative;
+  max-width: 600px;
+  margin: auto;
+}
+
+.slide {
+  display: none;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-weight: bold;
+  font-size: 24px;
+  border-radius: 50%;
+  padding: 10px;
+  cursor: pointer;
+  user-select: none;
+  z-index: 10;
+
+  /* Thêm những dòng sau để sửa lỗi hiển thị */
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.prev {
+  left: 10px;
+}
+
+.next {
+  right: 10px;
+}
+
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+  </style>
+</head>
+<body>
+  <div class="slideshow-container">
+    <img class="slide" src="https://i.pinimg.com/736x/61/10/02/61100289e7bc2ddf970fb11c1a9e3112.jpg" alt="Ảnh 1">
+    <img class="slide" src="https://i.pinimg.com/736x/bf/33/46/bf33467d9ea5ab24f19b68060779a912.jpg" alt="Ảnh 2">
+    <img class="slide" src="https://i.pinimg.com/474x/58/11/e4/5811e46eb15a6db842aa1e3bfc7c4ee7.jpg" alt="Ảnh 3">
+
+    <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+    <a class="next" onclick="changeSlide(1)">&#10095;</a>
+  </div>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.getElementsByClassName("slide");
+
+    function showSlide(index) {
+      for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      slides[index].style.display = "block";
+    }
+
+    function changeSlide(n) {
+      currentSlide += n;
+      if (currentSlide >= slides.length) currentSlide = 0;
+      if (currentSlide < 0) currentSlide = slides.length - 1;
+      showSlide(currentSlide);
+    }
+
+    // Hiển thị slide đầu tiên khi tải trang
+    showSlide(currentSlide);
+  </script>
+</body>
+</html>
